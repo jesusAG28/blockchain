@@ -32,7 +32,7 @@ public class Block {
 
 	public String calculateBlockHash() {
 		// Se concatena la información del bloque para calcular el resumen
-		String dataToHash = previousHash + Long.toString(timeStamp) + Integer.toString(nonce) + data;
+		String dataToHash = previousHash + Long.toString(timeStamp) + Integer.toString(nonce) + getData();
 
 		MessageDigest digest = null;
 
@@ -50,6 +50,24 @@ public class Block {
 		}
 
 		return buffer.toString();
+	}
+
+	/*
+	 * Minar un bloque significa resolver un problema complejo Por ejemplo: Calcular
+	 * el un hash que contenga 4 '0's seguidos al comienzo.
+	 * 
+	 */
+	public String mineBlock(int prefix) {
+		String prefixString = new String(new char[prefix]).replace('\0', '0');
+		while (!hash.substring(0, prefix).equals(prefixString)) {
+			nonce++;
+			hash = calculateBlockHash();
+		}
+		return hash;
+	}
+
+	public String getData() {
+		return data;
 	}
 
 }
