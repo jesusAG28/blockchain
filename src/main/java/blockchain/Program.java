@@ -49,6 +49,7 @@ public class Program {
 				System.out.println(" - hash         => " + MyBlockChain.getBlockchain().get(i).getHash());
 				System.out.println(" - previousHash => " + MyBlockChain.getBlockchain().get(i).getPreviousHash());
 				System.out.println(" - timeStamp => " + MyBlockChain.getBlockchain().get(i).getTimeStamp());
+				System.out.println("");
 			}
 			System.out.println("");
 			System.out.println("------------------------------");
