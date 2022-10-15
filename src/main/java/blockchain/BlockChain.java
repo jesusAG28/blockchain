@@ -19,9 +19,7 @@ public class BlockChain {
 				getBlockchain().get(getBlockchain().size() - 1).getHash(), // Valor resumen del bloque previo
 				new Date().getTime()); // Marca de tiempo en ms
 
-		// Hacer primero sin minar
-		// newBlock.mineBlock(prefix);
-		newBlock.mineBlock(4);
+		newBlock.mineBlock(4); // El parametro determina la dificultad, mayor numero = mayor dificultad
 		getBlockchain().add(newBlock);
 	}
 

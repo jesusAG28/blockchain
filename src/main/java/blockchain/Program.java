@@ -7,6 +7,7 @@ public class Program {
 	public static boolean goOn = true;
 
 	static int selection;
+	static Long tInicio, tFin, tTotal, segundos;
 	static String enter;
 	static Scanner input = new Scanner(System.in);
 
@@ -24,13 +25,17 @@ public class Program {
 			String data = input.nextLine();
 			System.out.println("");
 			System.out.println("Generando bloque");
+			tInicio = System.currentTimeMillis(); // Calculamos el tiempo quue tarda en encontrar un hash correcto
 			MyBlockChain.NuevoBloque(data);
-			System.out.println("Bloque generado correctamente");
+			tFin = System.currentTimeMillis();
+			tTotal = tFin - tInicio;
+			segundos = (long) (tTotal/1000.0);
+			System.out.println("Bloque generado correctamente en " + tTotal + " ms, " + segundos + " s");
 			System.out.println("");
 			System.out.println("------------------------------");
 			System.out.println("Pulsa enter para continuar");
 			input.nextLine();
-			//enter = input.nextLine();
+			// enter = input.nextLine();
 			break;
 		case 2:
 			// Mostrar la información de cada uno de los bloques de la blockchain
@@ -66,7 +71,6 @@ public class Program {
 
 	// Inserción de un nuevo bloque en la blockchain
 	public static void main(String[] argumentos) {
-		// System.out.println("Comienza el programa");
 
 		while (goOn) {
 			showMenu();
