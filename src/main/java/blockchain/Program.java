@@ -1,34 +1,80 @@
 package blockchain;
 
+import java.util.Scanner;
+
 public class Program {
 
-	// Numero aleatorio entre 5 y 15, que va a ser la cantidad de bloques
-	public static int cantidad = (int) Math.floor(Math.random() * (15 - 5 + 1) + 5);
+	public static boolean goOn = true;
+
+	static int selection;
+	static String enter;
+	static Scanner input = new Scanner(System.in);
+
+	// Declaramos Blockchain
+	static BlockChain MyBlockChain = new BlockChain();
+
+	public static void readKey() {
+		selection = input.nextInt();
+		switch (selection) {
+		case 1:
+			// Insertar un nuevo bloque en la blockchain
+			System.out.println("------------------------------");
+			System.out.println("Escribe la informacion del bloque: ");
+			input.nextLine();
+			String data = input.nextLine();
+			System.out.println("");
+			System.out.println("Generando bloque");
+			MyBlockChain.NuevoBloque(data);
+			System.out.println("Bloque generado correctamente");
+			System.out.println("");
+			System.out.println("------------------------------");
+			System.out.println("Pulsa enter para continuar");
+			input.nextLine();
+			//enter = input.nextLine();
+			break;
+		case 2:
+			// Mostrar la información de cada uno de los bloques de la blockchain
+			System.out.println("");
+			System.out.println("------------------------------");
+			System.out.println("Informacion de todos los bloques de la cadena: ");
+			for (int i = 0; i < MyBlockChain.getBlockchain().size(); i++) {
+				System.out.println("Bloque " + i + " => " + MyBlockChain.getBlockchain().get(i).getData());
+			}
+			System.out.println("");
+			System.out.println("------------------------------");
+			System.out.println("Pulsa enter para continuar");
+			input.nextLine();
+			enter = input.nextLine();
+			break;
+		case 3:
+			// Finalizar programa
+			goOn = false;
+			break;
+		default:
+			// Consituna el programa a la espera de in input valido
+		}
+	}
+
+	public static void showMenu() {
+		System.out.println("¿Que desea hacer? Pulse el numero correspondiente a la opcion y enter.");
+		System.out.println("");
+		System.out.println("1 Insertar un nuevo bloque en la blockchain");
+		System.out.println("2 Mostrar la información de cada uno de los bloques");
+		System.out.println("3 Finalizar programa");
+		System.out.println("");
+	}
 
 	// Inserción de un nuevo bloque en la blockchain
 	public static void main(String[] argumentos) {
-		// Declaramos Blockchain
-		BlockChain MyBlockChain = new BlockChain();
-		System.out.println("Comienza el programa");
-		
-		while(true) {
-			System.out.println("¿Que desea hacer?");
-			System.out.println("Pulse el numero correspondiente a la opcion.");
-			System.out.println("");
-			System.out.println("- Insertar un nuevo bloque en la blockchain");
-			System.out.println("- Mostrar la información de cada uno de los bloques de la blockchain");
-			System.out.println("- Fin del programa");
-			System.out.println("");
-			
-			
-			break;
+		// System.out.println("Comienza el programa");
+
+		while (goOn) {
+			showMenu();
+			readKey();
 		}
 
-		for (int i = 1; i <= cantidad; i++) {
-			MyBlockChain.NuevoBloque("Bloque " + i);
-			System.out.println("Bloque insertado: " + MyBlockChain.getBlockchain().get(i).getData());
-		}
-
-		System.out.println("Fin del programa");
+		System.out.println("");
+		System.out.println("Hasta luego!");
+		System.out.println("");
 	}
 }
