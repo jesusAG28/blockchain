@@ -43,7 +43,12 @@ public class Program {
 			System.out.println("------------------------------");
 			System.out.println("Informacion de todos los bloques de la cadena: ");
 			for (int i = 0; i < MyBlockChain.getBlockchain().size(); i++) {
-				System.out.println("Bloque " + i + " => " + MyBlockChain.getBlockchain().get(i).getData());
+				System.out.println("Bloque " + i);
+				System.out.println(" - data         => " + MyBlockChain.getBlockchain().get(i).getData());
+				System.out.println(" - nonce        => " + MyBlockChain.getBlockchain().get(i).getOnce());
+				System.out.println(" - hash         => " + MyBlockChain.getBlockchain().get(i).getHash());
+				System.out.println(" - previousHash => " + MyBlockChain.getBlockchain().get(i).getPreviousHash());
+				System.out.println(" - timeStamp => " + MyBlockChain.getBlockchain().get(i).getTimeStamp());
 			}
 			System.out.println("");
 			System.out.println("------------------------------");

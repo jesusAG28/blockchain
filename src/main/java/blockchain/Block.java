@@ -60,7 +60,7 @@ public class Block {
 	public String mineBlock(int prefix) {
 		String prefixString = new String(new char[prefix]).replace('\0', '0');
 		while (!hash.substring(0, prefix).equals(prefixString)) {
-			nonce++;
+			nonce = nonce + 1;
 			hash = calculateBlockHash();
 		}
 		return hash;
@@ -68,6 +68,10 @@ public class Block {
 
 	public String getData() {
 		return data;
+	}
+
+	public long getTimeStamp() {
+		return timeStamp;
 	}
 
 }
